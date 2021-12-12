@@ -8,7 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import com.example.myprojectandroidapp.ds.Task;
+
+import com.example.myprojectandroidapp.ds.Folder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -20,14 +21,13 @@ import java.util.concurrent.Executors;
 
 import static com.example.myprojectandroidapp.Constants.*;
 
-public class TaskList extends AppCompatActivity {
+public class FolderList extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task_list);
-
+        setContentView(R.layout.activity_folder_list);
         Executor executor = Executors.newSingleThreadExecutor();
         Handler handler = new Handler(Looper.getMainLooper());
 
@@ -35,24 +35,22 @@ public class TaskList extends AppCompatActivity {
         int courseId = currentIntent.getIntExtra("CourseId", 0);
 
         executor.execute(() -> {
-            //atitinka doInBackground
             try {
-                String response = RESTController.sendGet(TASKS_BY_PROJECT_URL + courseId);
+                String response = RESTController.sendGet(FOLDERS_BY_COURSE_URL + courseId);
+                System.out.println(response);
                 handler.post(() -> {
                     if (!response.equals("") && !response.equals("Error")) {
                         Gson builder = new GsonBuilder().create();
-                        Type courseListType = new TypeToken<List<Task>>() {
-                        }.getType();
-                        final List<Task> courseListFromJson = builder.fromJson(response, courseListType);
 
-                        ListView courseList = findViewById(R.id.courseList);
-                        ArrayAdapter<Task> arrayAdapter = new ArrayAdapter<>(TaskList.this, android.R.layout.simple_list_item_1, courseListFromJson);
-                        courseList.setAdapter(arrayAdapter);
+                        Type folderListType = new TypeToken<List<Folder>>() {
+                        }.getType();
+                        final List<Folder> folderListFromJson = builder.fromJson(response, folderListType);
+
+                        ListView folderList = findViewById(R.id.folderList);
+                        ArrayAdapter<Folder> arrayAdapter = new ArrayAdapter<>(FolderList.this, android.R.layout.simple_list_item_1, folderListFromJson);
+                        folderList.setAdapter(arrayAdapter);
                     }
                 });
-
-       /* Courses courses = new Courses();
-        courses.execute();*/
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -72,7 +70,7 @@ public class TaskList extends AppCompatActivity {
                 System.out.println(response);
                 handler.post(() -> {
                     if (response.equals("Success")) {
-                        Intent intent = new Intent(TaskList.this, MyCoursesActivity.class);
+                        Intent intent = new Intent(FolderList.this, MyCoursesActivity.class);
                         startActivity(intent);
                     }
                 });

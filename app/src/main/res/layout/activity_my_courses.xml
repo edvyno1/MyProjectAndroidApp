@@ -7,12 +7,6 @@
         android:layout_height="match_parent"
         tools:context=".MyCoursesActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-            android:layout_width="406dp"
-            android:layout_height="292dp" android:name="com.example.myprojectandroidapp.CourseFragment"
-            android:id="@+id/fragmentContainerView"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="@+id/courseList"/>
     <ListView
             android:layout_width="411dp"
             android:layout_height="128dp"

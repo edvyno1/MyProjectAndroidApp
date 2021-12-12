@@ -5,5 +5,5 @@ public class Constants {
     public static final String USER_LOGIN_URL = ADDRESS + "user/userLogin";
     public static final String COURSE_ALL_URL = ADDRESS + "course/allCourses";
     public static final String COURSE_DELETE = ADDRESS + "course/deleteCourse/";
-    public static final String TASKS_BY_PROJECT_URL = ADDRESS + "task/byProject/";
+    public static final String FOLDERS_BY_COURSE_URL = ADDRESS + "folder/byCourse/";
 }

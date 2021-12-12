@@ -16,7 +16,7 @@
             android:theme="@style/Theme.MyProjectAndroidApp"
             android:usesCleartextTraffic="true"
             tools:targetApi="n">
-        <activity android:name=".TaskList">
+        <activity android:name=".FolderList">
         </activity>
         <activity android:name=".MyCoursesActivity">
         </activity>

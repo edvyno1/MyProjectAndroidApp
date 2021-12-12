@@ -13,7 +13,6 @@ public class Course implements Serializable {
     private Date startDate;
     private Date endDate;
 
-
     public Course() {
     }
 
@@ -67,10 +66,8 @@ public class Course implements Serializable {
 
     @Override
     public String toString() {
-        return id + "-" + title;
+        return id + " - " + title;
     }
-
-
 
 }
 
